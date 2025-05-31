@@ -27,6 +27,7 @@ const bankStorage = document.querySelector('#bankOutput');
 const oddsStorage = document.querySelector('#oddsOutput');
 const evensStorage = document.querySelector('#evensOutput');
 
+//add number button
 const addNum = document.querySelector('#addNum');
 addNum.addEventListener('click', (event) => {
   event.preventDefault();
@@ -36,33 +37,33 @@ addNum.addEventListener('click', (event) => {
   input.value = '';
 });
 
+//created function that sorts even and odd numbers & pushs them to correct array and updates output.
+//used in sort1 and sort all
+const sortingFunc = (num) => {
+  if (num % 2 === 0) {
+    state.even.push(num);
+    evensStorage.innerText = state.even;
+  }
+  else {
+    state.odd.push(num);
+    oddsStorage.innerText = state.odd;
+  }
+}
+
+//sort1 button
 const sort1 = document.querySelector('#sort1');
 sort1.addEventListener('click', (event) => {
   event.preventDefault();
   const firstNum = state.bank.shift();
   bankStorage.innerText = state.bank;
-  if (firstNum % 2 === 0) {
-    state.even.push(firstNum);
-    evensStorage.innerText = state.even;
-  }
-  else {
-    state.odd.push(firstNum);
-    oddsStorage.innerText = state.odd;
-  }
+  sortingFunc(firstNum);
 });
 
+//sort all button
 const sortAll = document.querySelector('#sortAll');
 sortAll.addEventListener('click', (event) => {
   event.preventDefault();
-  state.bank.forEach(num => {
-    if (num % 2 === 0) {
-      state.even.push(num);
-      evensStorage.innerText = state.even;
-    }
-    else {
-      state.odd.push(num);
-      oddsStorage.innerText = state.odd;
-    }
-  })
+  state.bank.forEach(sortingFunc);
   bankStorage.innerText = "";
 });
+
