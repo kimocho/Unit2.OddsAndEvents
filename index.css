@@ -1,0 +1,11 @@
+body {
+  background-color: lightgray;
+}
+
+output {
+  display: block;
+  border: 3px solid black;
+  width: 90vw;
+  height: 100px;
+  background-color: white;
+}
